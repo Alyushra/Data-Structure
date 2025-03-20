@@ -1,4 +1,4 @@
-#i0nclude <stdio.h>
+#include <stdio.h>
 void main()
 {
     int n;
@@ -9,11 +9,8 @@ void main()
     }
     int new_element;
     scanf("%d",&new_element);
-    for(int i=n;i>0;i--){
-        arr[i]=arr[i-1];
-    }
     arr[0]=new_element;
-    n++;
+    n--;
     for(int i=0;i<n;i++){
         printf("%d",arr[i]);
     }
