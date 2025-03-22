@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdbool.h>
+#define MAX_SIZE 5 
+typedef struct {
+    int stack[MAX_SIZE];
+    int top;
+} StackExample;
+void initStack(StackExample *s) {
+    s->top = -1;
+}
+void push(StackExample *s, int value) {
+    if (s->top == MAX_SIZE - 1) {
+        printf("Stack overflow\n");
+        return;
+    }
+    s->stack[++s->top] = value;
+    printf("%d pushed into the stack\n", value);
+}
+int pop(StackExample *s) {
+    if (s->top == -1) {
+        printf("Stack underflow\n");
+        return -1;
+    }
+    int poppedElement = s->stack[s->top--];
+    printf("%d popped from the stack\n", poppedElement);
+    return poppedElement;
+}
+int top(StackExample *s) {
+    if (s->top == -1) {
+        printf("Stack is empty\n");
+        return -1;
+    }
+    return s->stack[s->top];
+}
+bool isEmpty(StackExample *s) {
+    return s->top == -1;
+}
+int main() {
+    StackExample stack;
+    initStack(&stack);
+    push(&stack, 10);
+    push(&stack, 20);
+    printf("Top element: %d\n", top(&stack));
+    pop(&stack);
+    pop(&stack);
+    pop(&stack);
+    printf("Is stack empty? %s\n", isEmpty(&stack) ? "Yes" : "No");
+    return 0;
+}
